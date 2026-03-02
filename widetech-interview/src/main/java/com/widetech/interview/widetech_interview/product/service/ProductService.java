@@ -22,6 +22,9 @@ public class ProductService {
         }
         Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size));
         return productPage.map(ProductMapper::toDTO);
+//        return new ProductListResponseDTO(productPage.getContent().stream()
+//                .map(ProductMapper::toDTO)
+//                .collect(Collectors.toList()));
     }
 
     public ProductResponseDTO getProductById(Long id) {

@@ -17,7 +17,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping
+    @GetMapping("/cart")
     public ResponseEntity<OrderResponseDTO> getCart() {
         return ResponseEntity.ok(orderService.getCart());
     }

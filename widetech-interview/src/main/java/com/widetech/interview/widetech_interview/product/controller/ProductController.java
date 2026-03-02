@@ -22,6 +22,14 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts(page, size));
     }
 
+    //if want to remove metadata
+//    @GetMapping
+//    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(@RequestParam(defaultValue = "0") int page,
+//                                                                   @RequestParam(defaultValue = "10") int size) {
+//        List<ProductResponseDTO> products = productService.getAllProducts(page, size);
+//        return ResponseEntity.ok(products);
+//    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
