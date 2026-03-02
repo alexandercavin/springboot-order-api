@@ -6,6 +6,7 @@ import com.widetech.interview.widetech_interview.product.entity.Product;
 import com.widetech.interview.widetech_interview.product.mapper.ProductMapper;
 import com.widetech.interview.widetech_interview.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,12 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        productRepository.deleteById(id);
+
+        try {
+            productRepository.deleteById(id);
+        } catch (DataIntegrityViolationException ex) {
+            throw new IllegalStateException("Cannot delete product because it is used in orders.");
+        }
     }
 
 
