@@ -16,6 +16,9 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public Page<ProductResponseDTO> getAllProducts(int page, int size) {
+        if (page < 0 || size <= 0 || size > 100) {
+            throw new IllegalArgumentException("Invalid pagination params");
+        }
         Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size));
         return productPage.map(ProductMapper::toDTO);
     }

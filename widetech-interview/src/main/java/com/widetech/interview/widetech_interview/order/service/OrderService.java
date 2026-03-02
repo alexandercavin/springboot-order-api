@@ -34,6 +34,10 @@ public class OrderService {
 
     public OrderResponseDTO addToCart(AddToCartRequestDTO request) {
 
+        if (request.getQuantity() == null || request.getQuantity() <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than 0");
+        }
+
         OrderEntity cart = getOrCreatePendingCart();
 
         Product product = productService.getProductEntityById(request.getProductId());

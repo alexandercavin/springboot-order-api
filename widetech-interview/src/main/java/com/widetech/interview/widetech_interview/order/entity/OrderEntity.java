@@ -44,4 +44,9 @@ public class OrderEntity {
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
