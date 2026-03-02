@@ -36,10 +36,4 @@ public class GlobalExceptionHandler {
                 .body(Map.of("errors", errors));
     }
 
-    @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<String> handleIllegalState(IllegalStateException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(ex.getMessage());
-    }
 }
